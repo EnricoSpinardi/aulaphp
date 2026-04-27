@@ -4,7 +4,6 @@ require_once "Conn.php";
 
 class Fornecedor {
 
-
     private $id;
     private $nome;
     private $cidade;
