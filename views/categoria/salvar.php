@@ -6,24 +6,21 @@
     <form method="post" name="formsalvar" id="formSalvar" class="m-3" enctype="multipart/form-data">
 
         <div class="form-group row">
-            <label for="inputText" class="col-sm-2 col-form-label">
+            <label for="txtnome" class="col-sm-2 col-form-label">
                 Nome
             </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="txtnome" name="txtnome" placeholder="Estado"
+                <input type="text" class="form-control" id="txtnome" name="txtnome" placeholder="Categoria"
                     value="">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputText" class="col-sm-2 col-form-label">
-                Sigla - UF
+            <label for="txtinformacoes" class="col-sm-2 col-form-label">
+                Informações
             </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="txtsigla" name="txtsigla" placeholder="UF"
-                    value="">
-            </div>
-        </div>
-
+                <textarea name="txtinformacoes" id="txtinformacoes" rows="3" placeholder="Informações aqui" class="form-control" >
+    
         <div class="form-group row">
             <div class="col-sm-10">
                 <input type="submit"
@@ -36,3 +33,35 @@
         </div>
     </form>
 </div>
+
+<?php
+    //verificar se o botão btnsalvar foi acionado
+    if(filter_input(INPUT_POST, 'btnsalvar')){
+        $nome = filter_input(INPUT_POST, 'textnome');
+        $info = filter_input(INPUT_POST, 'txtinformacoes');
+        //Acesso à class (em models)
+        include_once '../models/Categoria.php'; //Ver a classe
+        $cat = new Categoria //Acessar oq é publico na classe
+        //enviando os dados do form aos atributos da classe
+        $cat->setId(NULL);
+        $cat->setNome($nome);
+        $cat->setInformacoes($info);
+        // form -> vars -> sets -> atributos
+
+        //efetivar o insert into (salvar)
+        if($cat->salvar()) { //'->' acessar métodos ou propriedades de um objeto
+        <?php
+            <div class="alert alert-primary mt-3" role="alert">
+                Categoria - cadastro efetuado com sucesso
+            </div>
+            <meta http-equiv="refresh" content="0.2;URL=?p=categoria/categorias"
+        ?>
+        } else{
+        <?php
+            <div class="alert alert-danger mt-3" role="alert">
+                Categoria - erro ao cadastrar
+            </div>
+            <meta http-equiv="refresh" content="0.2;URL=?p=categoria/categorias"
+        ?>
+        }
+    }
