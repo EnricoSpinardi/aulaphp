@@ -1,5 +1,5 @@
-CREATE DATABASE bd_backend;
-USE bd_backend;
+CREATE DATABASE aula_php;
+USE aula_php;
 
 CREATE TABLE cliente(
     var_id INT PRIMARY KEY,
