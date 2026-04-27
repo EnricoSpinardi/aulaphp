@@ -18,4 +18,5 @@ class Cliente{
         $conn = Conn::getConexao();
         mysqli_query($conn, "CALL salvar_cliente($this->id, '$this->nome', '$this->email')")
     }
+}
 ?>
