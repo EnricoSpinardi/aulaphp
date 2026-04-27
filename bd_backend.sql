@@ -51,11 +51,11 @@ BEGIN
 END$$
 DELIMITER ;
 
-CALL salvar_cliente(1, 'Lucas Almeida', 'lucas@email.com');
-CALL salvar_cliente(2, 'Maria Silva', 'maria@email.com');
+CALL salvar_cliente(1, 'João', 'joao@email.com');
+CALL salvar_cliente(2, 'Pedro', 'pedro@email.com');
 
-CALL salvar_fornecedor(1, 'Distribuidora Tech', 'São Paulo');
-CALL salvar_fornecedor(2, 'Fornece Tudo', 'Campinas');
+CALL salvar_fornecedor(123, 'Fornecedor De Alimentos', 'Salto');
+CALL salvar_fornecedor(234, 'Fornecedor de Peças Automotivas ', 'Sorocaba');
 
 CALL listar_cliente();
 CALL listar_fornecedor();
