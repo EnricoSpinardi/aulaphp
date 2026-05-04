@@ -77,7 +77,7 @@
             <div class="alert alert-primary mt-3" role="alert">
                 Categoria - cadastro efetuado com sucesso
             </div>
-            <meta http-equiv="refresh" content="0.2;URL=?p=categoria/categorias"
+            <meta http-equiv="refresh" content="0.2;URL=?p=categoria/categorias">
         <?php
         } else{
         ?>
@@ -88,3 +88,4 @@
         <?php
         }
     }
+    ?>
