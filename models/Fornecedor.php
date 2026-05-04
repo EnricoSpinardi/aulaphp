@@ -1,12 +1,13 @@
 <?php
 
-require_once "Conn.php";
+include_once "Conn.php";
 
 class Fornecedor {
 
     private $id;
     private $nome;
     private $cidade;
+    private $conn
 
     public function getId()     { return $this->id; }
     public function getNome()   { return $this->nome; }
@@ -17,8 +18,17 @@ class Fornecedor {
     public function setCidade($cidade) { $this->cidade = $cidade; }
 
     public function salvar() {
-        $conn = Conn::getConexao();
-        mysqli_query($conn, "CALL salvar_fornecedor($this->id, '$this->nome', '$this->cidade')");
+        try {
+            $this->conn = new Conn();
+            $sql = "CALL salvar_categoria(?, ?, ?)";
+            $executar = $this->conn->prepare($sql);
+            $executar->bindValue(1, $this->id);
+            $executar->bindValue(2, mb_strtoupper($this->nome));
+            $executar->bindValue(3, mb_strtoupper($this->cidade));
+            return $executar->execute() == 1 ? true : false;
+        } catch (PDOException $erro) {
+            echo $erro->getMessage();
+        }
     }
 }
 ?>

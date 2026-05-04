@@ -1,10 +1,13 @@
 <?php
-require_once "Coon.php"
+
+include_once "Coon.php";
 
 class Cliente{
+
     private $id;
     private $nome;
     private $email;
+    private $conn
 
     public function getId() {return $this->id; }
     public function getNome() {return $this->nome;}
@@ -15,8 +18,17 @@ class Cliente{
     public function setEmail($email) {$this->email = $email;}
 
     public function salvar() {
-        $conn = Conn::getConexao();
-        mysqli_query($conn, "CALL salvar_cliente($this->id, '$this->nome', '$this->email')")
+        try {
+            $this->conn = new Conn();
+            $sql = "CALL salvar_categoria(?, ?, ?)";
+            $executar = $this->conn->prepare($sql);
+            $executar->bindValue(1, $this->id);
+            $executar->bindValue(2, mb_strtoupper($this->nome));
+            $executar->bindValue(3, mb_strtoupper($this->email));
+            return $executar->execute() == 1 ? true : false;
+        } catch (PDOException $erro) {
+            echo $erro->getMessage();
+        }
     }
 }
 ?>
