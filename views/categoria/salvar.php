@@ -60,7 +60,7 @@
 <?php
     //verificar se o botão btnsalvar foi acionado
     if(filter_input(INPUT_POST, 'btnsalvar')){
-        $nome = filter_input(INPUT_POST, 'textnome');
+        $nome = filter_input(INPUT_POST, 'txtnome');
         $info = filter_input(INPUT_POST, 'txtinformacoes');
         //Acesso à class (em models)
         include_once '../models/Categoria.php'; //Ver a classe
@@ -84,7 +84,7 @@
             <div class="alert alert-danger mt-3" role="alert">
                 Categoria - erro ao cadastrar
             </div>
-            <meta http-equiv="refresh" content="0.2;URL=?p=categoria/categorias"
+            <meta http-equiv="refresh" content="0.2;URL=?p=categorias"
         <?php
         }
     }

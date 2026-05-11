@@ -1,15 +1,33 @@
 <?php
 
-class Coon{
+class Conn extends PDO
+{
 
-    public static function getConexao(){
-        $servername = "localhost";
-        $username = "root";
-        $password = "";     
-        $dbname = "aula_php"; 
-        $conexao = new mysqli($servername, $username, $password, $dbname);
-        return $conexao;
-        
-        }
+    private static $instancia;                            
+    //www.teste.com/banco
+    private $host = "localhost";
+    private $usuario = "root";
+    //usbw
+    private $senha = "";
+    private $db = "aula_php";
+
+    public function __construct()
+    {
+        parent::__construct("mysql:host=$this->host;dbname=$this->db", "$this->usuario", "$this->senha");
     }
-?>
+
+    public static function getInstance()
+    {
+        // Se o a instancia não existe eu faço uma
+        if (!isset(self::$instancia)) {
+            try {
+                self::$instancia = new Conn;
+            } catch (Exception $e) {
+                echo 'Erro ao conectar';
+                exit();
+            }
+        }
+        // Se já existe instancia na memória eu retorno ela
+        return self::$instancia;
+    }
+}

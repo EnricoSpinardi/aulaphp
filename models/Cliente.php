@@ -9,7 +9,7 @@ class Cliente{
     private $email;
     private $conn
 
-    public function getId() {return $this->id; }
+    public function getId() {return $this->id; } //
     public function getNome() {return $this->nome;}
     public function getEmail() {return $this->email;}
 

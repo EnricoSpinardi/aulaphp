@@ -9,7 +9,7 @@ class Fornecedor {
     private $cidade;
     private $conn
 
-    public function getId()     { return $this->id; }
+    public function getId()     { return $this->id; } //
     public function getNome()   { return $this->nome; }
     public function getCidade() { return $this->cidade; }
 

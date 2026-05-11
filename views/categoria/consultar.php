@@ -13,11 +13,26 @@
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>UF</th>
+                        <th>Informações</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                    include_once'../models/Categoria.php';
+                    $cat = new Categoria();
+                    $dados = $cat->listar(null);
+                    foreach($dados as $mostrar) {
+                    ?>
+                    <tr>
+                        <td><?= $mostrar['id'] ?> //php de uma linha</td>
+                        <td><?= $mostrar['nome'] ?></td>
+                        <td><?= $mostrar['informacoes'] ?></td>
+                        <td>Editar e Excluir</td>
+                    </tr>
+                    <?php
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
